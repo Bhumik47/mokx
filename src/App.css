@@ -1,36 +1,328 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Kumbh+Sans&family=Work+Sans&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter&family=Kumbh+Sans&family=Raleway:wght@500&display=swap");
 
-.App{
+.App {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+.loading {
+  display: flex;
+  width: 375px;
+  height: 812px;
+  background: #fff;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading > div > img {
+  width: 172px;
+  height: 172px;
+  flex-shrink: 0;
+  margin: auto;
+}
+
+.loading > p {
+  color: #69235b;
+  text-align: center;
+  font-family: Kumbh Sans;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  width: 295px;
+  margin-top: 200px;
+}
+
+/* Home */
+.home {
+  width: 375px;
+  height: 812px;
+  background: #69235b;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.image-container {
+}
+
+.arya {
+  position: relative;
+  top: -25px;
+  width: 191.25px;
+  height: 30.375px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.arya > p {
+  color: #69235b;
+  text-align: center;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 14px;
+  /* 87.5% */
+  letter-spacing: 0.1px;
+  position: absolute;
+  top: -8px;
+}
+
+.typography {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  margin-top: -25px; /* Reduce the top margin to adjust the gap */
+}
+
+.typography p:nth-child(1) {
+  color: #fff;
+  font-family: Kumbh Sans;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  width: 291px;
+  height: 85px;
+  flex-shrink: 0;
+  text-align: left;
+}
+
+.typography p:nth-child(1) > span {
+  color: #ffc746;
+}
+
+.typography p:nth-child(2) {
+  color: #fff;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 26px;
+  width: 298px;
+  text-align: left;
+  /* 162.5% */
+}
+
+.typography p:nth-child(2) > span {
+  color: #fbbc04;
+}
+.Authentication-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.Authentication-options > p {
+  color: #fff;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Kumbh Sans;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px; /* 70% */
+  letter-spacing: 0.1px;
+  margin-top: 2rem;
+}
+
+.Authentication-options > p > a {
+  color: #fbbc04;
+  text-decoration: none;
+}
+/* login page */
+.login-page {
+  width: 375px;
+  height: 812px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 17px;
+}
+.login-page > p {
+  color: #fbbc04;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Kumbh Sans;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px; /* 70% */
+  letter-spacing: 0.1px;
+  cursor: pointer;
+}
+.no-box-shadow {
+  box-shadow: none !important;
+}
+
+.login-typography {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.login-typography > h3 {
+  color: #69235b;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Kumbh Sans;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 18px; /* 100% */
+  z-index: 1;
+}
+.login-typography > img {
+  position: absolute;
+  top: 30px;
+  left: 84px;
+}
+
+.login-typography > p {
+  color: #69235b;
+  text-align: center;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: 0.1px;
+  width: 293px;
+}
+/* sign up page */
+.signup-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 375px;
+  height: 812px;
+  background: #fff;
+}
+.signup-page img {
+  width: 72px;
+  height: 64px;
+  flex-shrink: 0;
+  margin-bottom: 0;
+}
+.signup-typography {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-top: 0;
+}
+
+.signup-typography img {
+  position: absolute;
+  width: 50px;
+  height: 8px;
+  flex-shrink: 0;
+  top: 29.5px;
+  right: 62px;
+}
+.signup-typography > h3 {
+  color: #69235b;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Raleway;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 18px; /* 100% */
+  z-index: 1;
+  margin-bottom: 0px;
+}
+.signup-typography > p {
+  color: #69235b;
+  text-align: center;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: 0.1px;
+  width: 293px;
+}
+/* Components */
+/* social */
+
+.social-media {
+  display: flex;
+  gap: 22px;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
   justify-content: center;
   align-items: center;
 }
 
-.loading{
+.social-media > div {
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
   display: flex;
-  width: 375px;
-    height: 812px;
-    background: #FFF;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-.loading > div > img{
-  width: 172px;
-    height: 172px;
-    flex-shrink: 0;
-    margin: auto;
+  align-items: center;
+  justify-content: center;
+  stroke-width: 1px;
+  cursor: pointer;
 }
 
-.loading > p {
-  color: #69235B;
-    text-align: center;
-    font-family: Kumbh Sans;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    width: 295px;
-    margin-top: 200px;
+/* OR */
+.or-line {
+  display: flex;
+  gap: 1rem;
+  margin: 14px 0;
+  align-items: center;
+}
+
+.or-line > hr {
+  width: 132px;
+  height: 1px;
+  background: #cdd1d0;
+}
+
+.or-line > p {
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 100;
+  line-height: 14px;
+
+  letter-spacing: 0.1px;
+  margin: 0;
+
+  padding: 0;
+}
+
+/* button */
+
+.button > button {
+  width: 340px;
+  height: 54px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #ffc746;
+  border: none;
+
+  /* text */
+  color: #69235b;
+  text-align: center;
+  font-family: Kumbh Sans;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
