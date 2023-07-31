@@ -29,7 +29,7 @@ function SignUpPage() {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    gap: "1.3rem",
+    gap: "2rem",
   });
 
   const inputLabelStyles = {
@@ -48,23 +48,18 @@ function SignUpPage() {
 
   return (
     <div className="signup-page">
-      <AppBar
-        position="static"
-        className="no-box-shadow"
-        style={{ backgroundColor: "#fff" }}
-      >
-        <Toolbar>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="back"
-            onClick={handleBackClick}
-          >
-            <CurvedBackIcon style={{ color: "#000E08" }} />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
-      <img src="/Assets/MOkx logo 1.png" alt="logo" />
+      <div style={{ alignSelf: "flex-start" }}>
+        <IconButton
+          edge="start"
+          color="inherit"
+          aria-label="back"
+          style={{ marginLeft: 30 }}
+          onClick={handleBackClick}
+        >
+          <CurvedBackIcon color="#000E08" />
+        </IconButton>
+        <img src="/Assets/MOkx logo 1.png" alt="logo" />
+      </div>
       <div className="signup-typography">
         <h3>Sign up with Email</h3>
         <img src="/Assets/Line 42 (Stroke).png" alt="style" />

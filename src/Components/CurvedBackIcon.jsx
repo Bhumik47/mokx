@@ -1,6 +1,6 @@
 import React from "react";
 
-const CurvedBackIcon = () => {
+const CurvedBackIcon = ({ color }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -11,7 +11,7 @@ const CurvedBackIcon = () => {
     >
       <path
         d="M10 8L6 12M6 12L10 16M6 12L18 12"
-        stroke="#000E08"
+        stroke="#69235B"
         stroke-width="1.5"
         stroke-linecap="round"
         stroke-linejoin="round"

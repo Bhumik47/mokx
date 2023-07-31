@@ -62,7 +62,7 @@ function LoginPage() {
             aria-label="back"
             onClick={handleBackClick}
           >
-            <CurvedBackIcon style={{ color: "#000E08" }} />
+            <CurvedBackIcon color="#000E08" />
           </IconButton>
         </Toolbar>
       </AppBar>

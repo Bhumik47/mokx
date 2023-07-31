@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter&family=Kumbh+Sans&family=Raleway:wght@500&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Inter&family=Kumbh+Sans&family=Mukta&family=Raleway:wght@500&display=swap");
 .App {
   display: flex;
   justify-content: center;
@@ -209,11 +208,20 @@
   height: 812px;
   background: #fff;
 }
-.signup-page img {
+.signup-page div:nth-child(1) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+  margin-bottom: -10px;
+  width: auto;
+}
+.signup-page > div:nth-child(1) img {
   width: 72px;
   height: 64px;
   flex-shrink: 0;
   margin-bottom: 0;
+  margin-top: 60px;
 }
 .signup-typography {
   display: flex;
@@ -222,6 +230,7 @@
   justify-content: center;
   position: relative;
   margin-top: 0;
+  margin-bottom: 1rem;
 }
 
 .signup-typography img {
@@ -255,6 +264,56 @@
   letter-spacing: 0.1px;
   width: 293px;
 }
+.signup-page Input {
+  width: 327px;
+}
+/* chat page */
+.profile-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.chat-name {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 4px;
+}
+.chat-name > p:nth-child(1) {
+  color: #69235b;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Raleway;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px; /* 100% */
+  margin: 0;
+}
+.chat-name > p:nth-child(2) {
+  margin: 0;
+  color: #797c7b;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 100;
+  line-height: 12px; /* 100% */
+}
+
+.language-button {
+  display: flex;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Mukta;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 16px; /* 100% */
+  margin-left: 9rem;
+  cursor: pointer;
+  background: inherit;
+  border: none;
+  padding: 1px;
+}
+
 /* Components */
 /* social */
 
@@ -324,5 +383,67 @@
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
+  line-height: normal;
+}
+/* custom message */
+.message {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.message.incoming .message-content {
+  background: #69235b;
+  padding: 10px;
+  border-radius: 10px;
+  margin-left: 10px;
+}
+
+.message.outgoing .message-content {
+  background: #fbbc04;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.message .message-text {
+  color: #fff;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 133.333% */
+  letter-spacing: 0.12px;
+  flex-shrink: 0;
+}
+
+.profile-photo {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.message-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 328px;
+  flex-shrink: 0;
+  border-radius: 30px;
+  background: #fff;
+  box-shadow: 5px 4px 20px 0px rgba(0, 0, 0, 0.13);
+}
+.message-input .cs-message-input__content-editor-wrapper {
+  background-color: #fff;
+}
+.message-input .cs-message-input__content-editor {
+  background-color: #fff;
+}
+.message-input
+  .cs-message-input__content-editor[data-placeholder]:empty:before {
+  color: #a1a1a1;
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
   line-height: normal;
 }
