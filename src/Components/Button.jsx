@@ -1,9 +1,9 @@
 import React from "react";
 
-function Button({ title }) {
+function Button({ title, func }) {
   return (
     <div className="button">
-      <button type="submit">{title}</button>
+      <button type="submit" onClick={func}>{title}</button>
     </div>
   );
 }

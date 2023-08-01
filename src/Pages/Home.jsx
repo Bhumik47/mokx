@@ -2,8 +2,17 @@ import React from "react";
 import Social from "../Components/Social";
 import OR from "../Components/OR";
 import Button from "../Components/Button";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+  const navigate = useNavigate();
+  const handleSignup = () => {
+    navigate("/signup");
+  }
+
+  const handleLogin = () => {
+    navigate('/login');
+  }
   return (
     <div className="home">
       <div className="image-container">
@@ -41,9 +50,9 @@ function Home() {
       <div className="Authentication-options">
         <Social border="1px solid #A8B0AF" color="#FFFFFF" />
         <OR color="#FFFFFF" opacity={0.20000000298023224} />
-        <Button title="Sign up with mail" />
-        <p>
-          Existing account?<a href=""> Log in</a>
+        <Button title="Sign up with mail" func={handleSignup}/>
+        <p onClick={handleLogin}>
+          Existing account?<span> Log in</span>
         </p>
       </div>
     </div>

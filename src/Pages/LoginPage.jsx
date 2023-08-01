@@ -8,6 +8,7 @@ import CurvedBackIcon from "../Components/CurvedBackIcon";
 import Social from "../Components/Social";
 import OR from "../Components/OR";
 import styled from "@emotion/styled";
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
   const Input = styled(TextField)`
@@ -46,7 +47,15 @@ function LoginPage() {
     letterSpacing: "0.1px",
   };
 
-  const handleBackClick = () => {};
+  const navigate = useNavigate();
+
+  const handleBackClick = () => { 
+    navigate(-1);
+  };
+  
+  const handleChat = () => {
+    navigate("/chat");
+  }
 
   return (
     <div className="login-page">
@@ -93,7 +102,7 @@ function LoginPage() {
           InputLabelProps={{ style: inputLabelStyles }}
         />
         <div style={{ marginTop: "8rem" }}>
-          <Button title="Login" />
+          <Button title="Login" func={handleChat}/>
         </div>
       </Form>
       <p>Forgot Password?</p>

@@ -4,7 +4,7 @@ import React from 'react'
 function LoadingPage() {
   return (
       <div className='loading'>
-          <div>
+          <div style={{position : "fixed"}}>
               <img src="Assets/MOkx logo 1.png" alt="" />
 
           </div>

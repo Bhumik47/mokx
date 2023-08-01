@@ -1,11 +1,10 @@
 import React from "react";
 import TextField from "@mui/material/TextField";
 import Button from "../Components/Button";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import CurvedBackIcon from "../Components/CurvedBackIcon";
 import styled from "@emotion/styled";
+import { useNavigate } from "react-router-dom";
 
 function SignUpPage() {
   const Input = styled(TextField)`
@@ -43,8 +42,11 @@ function SignUpPage() {
     lineHeight: "14px",
     letterSpacing: "0.1px",
   };
-
-  const handleBackClick = () => {};
+  const navigate = useNavigate();
+  const handleBackClick = () => { navigate(-1); };
+   const handleSignup = () => {
+    navigate("/login");
+  }
 
   return (
     <div className="signup-page">
@@ -95,7 +97,7 @@ function SignUpPage() {
           InputLabelProps={{ style: inputLabelStyles }}
         />
         <div style={{ marginTop: "4rem" }}>
-          <Button title="Create an account" />
+          <Button title="Create an account" func={handleSignup}/>
         </div>
       </Form>
     </div>

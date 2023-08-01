@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 import {
   MainContainer,
   ChatContainer,
@@ -27,6 +30,19 @@ function ChatPage() {
       direction: "incoming",
     },
   ]);
+
+  const translateToHindi = async (text) => {
+  try {
+    const response = await axios.get(`https://api.pawan.krd/gtranslate?from=en&to=hi&text=${text}`);
+    console.log("Translation Response:");
+    // return response.data.translated;
+  } catch (error) {
+    console.error("Translation Error:", error);
+    return text; // Return the original text if there's an error
+  }
+};
+
+
 
   // Simulate a response from Arya
   const simulateAryaReply = (userMessage) => {
@@ -56,6 +72,10 @@ function ChatPage() {
     // Simulate a response from Arya
     const aryaReply = simulateAryaReply(message);
 
+    if (isLanguageButtonActive) {
+    aryaReply.message = await translateToHindi(aryaReply.message);
+  }
+
     // Delay for a better UI experience (remove this in production)
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
@@ -64,8 +84,11 @@ function ChatPage() {
 
     setTyping(false); // Arya has finished typing
   };
+  const navigate = useNavigate();
 
-  const handleBackClick = () => {};
+  const handleBackClick = () => {
+    navigate(-1);
+  };
 
   const handleLanguageButtonClick = () => {
     setIsLanguageButtonActive((prevState) => !prevState);
@@ -114,16 +137,16 @@ function ChatPage() {
             >
               <p
                 style={{
-                  color: isLanguageButtonActive ? "#FBBC04" : "#FBDC94",
-                  fontWeight: isLanguageButtonActive ? 800 : 275,
+                   color: isLanguageButtonActive ? "#FBDC94" : "#FBBC04",
+                  fontWeight: isLanguageButtonActive ? 275 : 800,
                 }}
               >
                 A/
               </p>
               <p
                 style={{
-                  color: isLanguageButtonActive ? "#FBDC94" : "#FBBC04",
-                  fontWeight: isLanguageButtonActive ? 275 : 800,
+                    color: isLanguageButtonActive ? "#FBBC04" : "#FBDC94",
+                  fontWeight: isLanguageButtonActive ? 800 : 275,
                 }}
               >
                 क
@@ -151,6 +174,7 @@ function ChatPage() {
                 return <CustomMessage key={i} model={message} />;
               })}
             </MessageList>
+            
             <MessageInput
               style={{ marginBottom: 22 }}
               className="message-input"

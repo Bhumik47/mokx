@@ -32,7 +32,7 @@
   font-weight: 600;
   line-height: normal;
   width: 295px;
-  margin-top: 200px;
+  margin-top: 40rem;
 }
 
 /* Home */
@@ -134,9 +134,9 @@
   margin-top: 2rem;
 }
 
-.Authentication-options > p > a {
+.Authentication-options > p > span {
   color: #fbbc04;
-  text-decoration: none;
+  cursor: pointer;
 }
 /* login page */
 .login-page {
