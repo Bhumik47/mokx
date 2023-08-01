@@ -14,7 +14,6 @@ function CustomMessage({ model }) {
     wordWrap: "break-word",
     maxWidth: "15rem",
     position: "relative", // Add relative positioning
-    margin: isOutgoing ? "0 0 10px 0" : "0 0 10px",
   };
 
   const textStyle = {

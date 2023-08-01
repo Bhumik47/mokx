@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -7,7 +7,6 @@ import {
   MainContainer,
   ChatContainer,
   MessageList,
-  Message,
   MessageInput,
   TypingIndicator,
 } from "@chatscope/chat-ui-kit-react";
@@ -34,7 +33,7 @@ function ChatPage() {
   const translateToHindi = async (text) => {
   try {
     const response = await axios.get(`https://api.pawan.krd/gtranslate?from=en&to=hi&text=${text}`);
-    console.log("Translation Response:");
+    console.log("Translation Response:", response);
     // return response.data.translated;
   } catch (error) {
     console.error("Translation Error:", error);
