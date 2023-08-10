@@ -15,6 +15,20 @@ function OtpAuth() {
   const [loading, setLoading] = useState(false);
   const [showOTP, setShowOTP] = useState(false);
   const [user, setUser] = useState(null);
+  const [timer, setTimer] = useState(0);
+
+  function startTimer(duration) {
+    setTimer(duration);
+    const intervalId = setInterval(() => {
+      setTimer((prevTime) => prevTime - 1);
+    }, 1000);
+    return intervalId;
+  }
+
+  function stopTimer(intervalId) {
+    clearInterval(intervalId);
+    setTimer(0);
+  }
 
   const navigate = useNavigate();
 
@@ -47,6 +61,13 @@ function OtpAuth() {
         setLoading(false);
         setShowOTP(true);
         toast.success("OTP Sent!");
+
+        // Start the timer when OTP is sent
+        const intervalId = startTimer(180); // 3 minutes in seconds
+        // Enable resend button after the timer ends
+        setTimeout(() => {
+          stopTimer(intervalId);
+        }, 180000); // 3 minutes in milliseconds
       })
       .catch((error) => {
         console.log(error);
@@ -107,19 +128,35 @@ function OtpAuth() {
               </label>
             </div>
             <div className="Authentication-otp">
-              {
-                <OtpInput
-                  value={otp}
-                  onChange={setOtp}
-                  OTPLength={6}
-                  otpType="number"
-                  disabled={false}
-                  autoFocus
-                  className="opt-container "
-                ></OtpInput>
-              }
+              <div className="timer">
+                <p>
+                  {timer > 0
+                    ? `0${Math.floor(timer / 60)}:${timer % 60}`
+                    : "00:00"}
+                </p>
+              </div>
+              <OtpInput
+                value={otp}
+                onChange={setOtp}
+                OTPLength={6}
+                otpType="number"
+                disabled={false}
+                autoFocus
+                className="opt-container "
+              ></OtpInput>
+
               <p>
-                I didn't receive any code. <span>RESEND</span>
+                I didn't receive any code.{" "}
+                <span
+                  onClick={() => {
+                    if (timer <= 0) {
+                      onSignup();
+                    }
+                  }}
+                  className={timer > 0 ? "disabled-link" : "enable-link"}
+                >
+                  RESEND
+                </span>
               </p>
 
               <Button title="Submit" func={onOTPVerify} />
@@ -128,7 +165,7 @@ function OtpAuth() {
         ) : (
           <>
             <div className="otp-typography">
-              <p>Start your Vedic quest</p>
+              <p style={{ textAlign: "start" }}>Start your Vedic quest</p>
             </div>
             <div className="Authentication-options">
               <label htmlFor="ph">Enter mobile no.*</label>

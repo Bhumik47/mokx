@@ -57,7 +57,7 @@
   line-height: normal;
   width: 327.757px;
 }
-.Authentication-otp p span {
+.enable-link {
   color: #fbbc04;
   font-family: Poppins;
   font-size: 14px;
@@ -91,4 +91,22 @@
   font-weight: 400;
   line-height: normal;
   max-width: 152px;
+}
+.disabled-link {
+  pointer-events: none;
+  color: gray; /* You can use your preferred disabled color */
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.timer p {
+  color: #fbbc04;
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: center;
 }

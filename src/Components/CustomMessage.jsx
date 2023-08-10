@@ -2,6 +2,7 @@ import { format } from "date-fns";
 import React from "react";
 
 function CustomMessage({ model }) {
+  console.log("model is", model);
   const isOutgoing = model.direction === "outgoing";
 
   const messageStyle = {

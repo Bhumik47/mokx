@@ -30,55 +30,47 @@ function ChatPage() {
     },
   ]);
 
-  const translateToHindi = async (text) => {
-    try {
-      const response = await axios.get(
-        `https://api.pawan.krd/gtranslate?from=en&to=hi&text=${text}`
-      );
-      console.log("Translation Response:", response);
-      // return response.data.translated;
-    } catch (error) {
-      console.error("Translation Error:", error);
-      return text; // Return the original text if there's an error
-    }
-  };
-
   // Simulate a response from Arya
   const simulateAryaReply = async (userMessage) => {
     console.log("user message", userMessage);
-
-    await fetch("http://20.235.118.112:5000/generate", {
+    const formData = new FormData();
+    formData.append("text", userMessage);
+    console.log(formData);
+    const response = await fetch("http://20.235.118.112:5000/generate", {
       method: "POST",
-      body: JSON.stringify({
-        text: userMessage,
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
+      body: formData,
     })
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (data) {
-        console.log(data);
-      })
-      .catch((error) => console.error("Error:", error));
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+        return json;
+      });
+    console.log("response", response);
+    return {
+      message: response.response, // Use the actual response from Arya
+      sender: "Arya",
+      profilePhoto: "/Assets/Rectangle 1092.png",
+      direction: "incoming",
+    };
   };
 
-  // Call the chatbot API using POST request
-  // await axios
-  //   .post(
-  //     "https://20.235.118.112:5000/generate",
-  //     { text: userMessage } // Send user message as data in the POST request
-  //   )
-  //   .then((response) => {
-  //     console.log(response.json());
-  //   })
-  //   .catch((error) => {
-  //     console.error("Error fetching response from API:", error);
-  //     setTyping(false);
-  //   });
-  // };
+  /* const simulateAryaReply = async (userMessage) => {
+    console.log("user message", userMessage);
+
+    // Call the chatbot API using POST request
+    await axios
+      .post(
+        "https://20.235.118.112:5000/generate",
+        { text: userMessage } // Send user message as data in the POST request
+      )
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching response from API:", error);
+        setTyping(false);
+      });
+  }; */
 
   const handleSend = async (message) => {
     const newMessage = {
@@ -118,8 +110,9 @@ function ChatPage() {
       <div
         style={{
           position: "relative",
-          height: 812,
-          width: 375,
+          height: "90vh",
+          width: "100%",
+          maxWidthwidth: 375,
           background: "#F8F8FF",
         }}
       >
