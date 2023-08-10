@@ -8,7 +8,7 @@ import { getAuth } from "firebase/auth";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyCuj9Ixmp_hlAWNc1T9QEZdqMu5yEHA0n0",
-  authDomain: "mokx-3cce1.firebaseapp.com",
+  authDomain: "https://mokx-psi.vercel.app/",
   projectId: "mokx-3cce1",
   storageBucket: "mokx-3cce1.appspot.com",
   messagingSenderId: "244581206893",
