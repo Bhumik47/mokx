@@ -110,7 +110,7 @@ function ChatPage() {
       <div
         style={{
           position: "relative",
-          height: "90vh",
+          height: "80vh",
           width: "100%",
           maxWidthwidth: 375,
           background: "#F8F8FF",
