@@ -109,7 +109,7 @@ function ChatPage() {
     <div className="chat-page">
       <div
         style={{
-          height: "80vh",
+          height: "100vh",
           width: "100%",
           maxWidthwidth: 375,
           background: "#F8F8FF",
