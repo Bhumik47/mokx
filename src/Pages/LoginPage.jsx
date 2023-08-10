@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "../Components/Button";
 import AppBar from "@mui/material/AppBar";
@@ -9,9 +9,14 @@ import Social from "../Components/Social";
 import OR from "../Components/OR";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
+import { signInWithEmailAndPassword } from "@firebase/auth";
+import { auth } from "../firebase";
 
 function LoginPage() {
-  const Input = styled(TextField)`
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  /* const Input = styled(TextField)`
     width: 327px;
 
     & .MuiInput-underline:before {
@@ -33,7 +38,7 @@ function LoginPage() {
     justifyContent: "center",
     alignItems: "center",
     gap: "1.3rem",
-  });
+  }); */
 
   const inputLabelStyles = {
     color: "#69235B",
@@ -49,13 +54,24 @@ function LoginPage() {
 
   const navigate = useNavigate();
 
-  const handleBackClick = () => { 
+  const handleBackClick = () => {
     navigate(-1);
   };
-  
+
   const handleChat = () => {
     navigate("/chat");
-  }
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        console.log(userCredential);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div className="login-page">
@@ -86,25 +102,30 @@ function LoginPage() {
       </div>
       <Social border="1px solid black" color="#000000" />
       <OR color="#69235B" opacity={0.5} />
-      <Form>
-        <Input
+      <form onSubmit={handleLogin}>
+        <input
           label="Your email" // Label for the email field
           variant="standard" // Standard variant
           type="email" // Specify input type as email
           margin="normal" // Add some space below the input
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           InputLabelProps={{ style: inputLabelStyles }}
         />
-        <Input
+        <input
           label="Password" // Label for the password field
           variant="standard" // Standard variant
           type="password" // Specify input type as password
           margin="normal" // Add some space below the input
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           InputLabelProps={{ style: inputLabelStyles }}
         />
-        <div style={{ marginTop: "8rem" }}>
-          <Button title="Login" func={handleChat}/>
-        </div>
-      </Form>
+        {/* <div style={{ marginTop: "8rem" }}>
+          <Button title="Login" func={handleChat} />
+        </div> */}
+        <button>Login</button>
+      </form>
       <p>Forgot Password?</p>
     </div>
   );

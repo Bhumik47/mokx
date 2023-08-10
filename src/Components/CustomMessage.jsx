@@ -31,7 +31,7 @@ function CustomMessage({ model }) {
     display: "flex",
     alignItems: "flex-start", // Align items to the top of the container
     justifyContent: isOutgoing ? "flex-end" : "flex-start", // Align outgoing messages to the right, incoming messages to the left
-     margin: "0 0 10px",
+    margin: "0 0 10px",
   };
 
   const profilePhotoStyle = {
@@ -45,20 +45,19 @@ function CustomMessage({ model }) {
 
   const timestampStyle = {
     color: "#797C7B",
-fontFamily: "Inter",
+    fontFamily: "Inter",
 
-fontStyle: "normal",
-fontWeight: "100",
-lineHeight: "10px",
-  fontSize: "10px",
-  position: "absolute",
-  bottom: "-8px",
-  left: isOutgoing ? "auto" : "0",
-  right: isOutgoing ? "0" : "auto",
-  whiteSpace: "nowrap", // Prevent timestamp from wrapping to the next line
-  overflow: "hidden",   // Hide any overflowed content (if any)
-};
-
+    fontStyle: "normal",
+    fontWeight: "100",
+    lineHeight: "10px",
+    fontSize: "10px",
+    position: "absolute",
+    bottom: "-8px",
+    left: isOutgoing ? "auto" : "0",
+    right: isOutgoing ? "0" : "auto",
+    whiteSpace: "nowrap", // Prevent timestamp from wrapping to the next line
+    overflow: "hidden", // Hide any overflowed content (if any)
+  };
 
   const formatTimestamp = (timestamp) => {
     return format(timestamp, "hh:mm a"); // Example format: "02:30 PM"
@@ -77,16 +76,22 @@ lineHeight: "10px",
           style={profilePhotoStyle}
         />
       )}
-      <div style={{ position: "relative", maxWidth: "100%", margin:"0 0 30px" }}>
+      <div
+        style={{ position: "relative", maxWidth: "100%", margin: "0 0 30px" }}
+      >
         <div className="message-content" style={messageStyle}>
           <div className="message-text" style={textStyle}>
             {model.message}
           </div>
         </div>
         {/* Display timestamp for outgoing messages */}
-        {isOutgoing && <div style={timestampStyle}>{formatTimestamp(new Date())}</div>}
+        {isOutgoing && (
+          <div style={timestampStyle}>{formatTimestamp(new Date())}</div>
+        )}
         {/* Display timestamp for incoming messages */}
-        {!isOutgoing && <div style={timestampStyle}>{formatTimestamp(new Date())}</div>}
+        {!isOutgoing && (
+          <div style={timestampStyle}>{formatTimestamp(new Date())}</div>
+        )}
       </div>
     </div>
   );

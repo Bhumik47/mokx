@@ -31,29 +31,54 @@ function ChatPage() {
   ]);
 
   const translateToHindi = async (text) => {
-  try {
-    const response = await axios.get(`https://api.pawan.krd/gtranslate?from=en&to=hi&text=${text}`);
-    console.log("Translation Response:", response);
-    // return response.data.translated;
-  } catch (error) {
-    console.error("Translation Error:", error);
-    return text; // Return the original text if there's an error
-  }
-};
-
-
+    try {
+      const response = await axios.get(
+        `https://api.pawan.krd/gtranslate?from=en&to=hi&text=${text}`
+      );
+      console.log("Translation Response:", response);
+      // return response.data.translated;
+    } catch (error) {
+      console.error("Translation Error:", error);
+      return text; // Return the original text if there's an error
+    }
+  };
 
   // Simulate a response from Arya
-  const simulateAryaReply = (userMessage) => {
-    // You can implement your AI backend call here to get a real response from Arya
-    // For this example, I'll simulate a simple reply
-    return {
-      message: `You said: ${userMessage}. This is Arya's reply.`,
-      sender: "Arya",
-      direction: "incoming",
-      profilePhoto: "/Assets/Rectangle 1092.png",
-    };
+  const simulateAryaReply = async (userMessage) => {
+    console.log("user message", userMessage);
+
+    await fetch("http://20.235.118.112:5000/generate", {
+      method: "POST",
+      body: JSON.stringify({
+        text: userMessage,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        console.log(data);
+      })
+      .catch((error) => console.error("Error:", error));
   };
+
+  // Call the chatbot API using POST request
+  // await axios
+  //   .post(
+  //     "https://20.235.118.112:5000/generate",
+  //     { text: userMessage } // Send user message as data in the POST request
+  //   )
+  //   .then((response) => {
+  //     console.log(response.json());
+  //   })
+  //   .catch((error) => {
+  //     console.error("Error fetching response from API:", error);
+  //     setTyping(false);
+  //   });
+  // };
 
   const handleSend = async (message) => {
     const newMessage = {
@@ -69,15 +94,10 @@ function ChatPage() {
     setTyping(true); // Arya is typing
 
     // Simulate a response from Arya
-    const aryaReply = simulateAryaReply(message);
-
-    if (isLanguageButtonActive) {
-    aryaReply.message = await translateToHindi(aryaReply.message);
-  }
+    const aryaReply = await simulateAryaReply(message);
+    console.log("arya reply is", aryaReply);
 
     // Delay for a better UI experience (remove this in production)
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
     // Add Arya's reply to the messages
     setMessages((prevMessages) => [...prevMessages, aryaReply]);
 
@@ -136,7 +156,7 @@ function ChatPage() {
             >
               <p
                 style={{
-                   color: isLanguageButtonActive ? "#FBDC94" : "#FBBC04",
+                  color: isLanguageButtonActive ? "#FBDC94" : "#FBBC04",
                   fontWeight: isLanguageButtonActive ? 275 : 800,
                 }}
               >
@@ -144,7 +164,7 @@ function ChatPage() {
               </p>
               <p
                 style={{
-                    color: isLanguageButtonActive ? "#FBBC04" : "#FBDC94",
+                  color: isLanguageButtonActive ? "#FBBC04" : "#FBDC94",
                   fontWeight: isLanguageButtonActive ? 800 : 275,
                 }}
               >
@@ -173,7 +193,7 @@ function ChatPage() {
                 return <CustomMessage key={i} model={message} />;
               })}
             </MessageList>
-            
+
             <MessageInput
               style={{ marginBottom: 22 }}
               className="message-input"

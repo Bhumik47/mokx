@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Home from "./Home";
+/* import Home from "./Home"; */
 import LoadingPage from "./LoadingPage";
+import OtpAuth from "./OtpAuth";
 
 function AppLoader() {
   const [loading, setLoading] = useState(true);
@@ -15,7 +16,7 @@ function AppLoader() {
     return () => clearTimeout(timer);
   }, []);
 
-  return loading ? <LoadingPage /> : <Home />;
+  return loading ? <LoadingPage /> : <OtpAuth />;
 }
 
 export default AppLoader;

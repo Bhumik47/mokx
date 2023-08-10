@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "../Components/Button";
 import IconButton from "@mui/material/IconButton";
 import CurvedBackIcon from "../Components/CurvedBackIcon";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../firebase";
+
+import User from "../models/user";
+import { createUserWithEmailAndPassword } from "@firebase/auth";
 
 function SignUpPage() {
-  const Input = styled(TextField)`
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [name, setName] = useState("");
+  const [user, setUser] = useState(null);
+
+  /* const Input = styled(TextField)`
     width: 327px;
 
     & .MuiInput-underline:before {
@@ -30,7 +40,7 @@ function SignUpPage() {
     alignItems: "center",
     gap: "2rem",
   });
-
+ */
   const inputLabelStyles = {
     color: "#69235B",
     textAlign: "center",
@@ -43,10 +53,23 @@ function SignUpPage() {
     letterSpacing: "0.1px",
   };
   const navigate = useNavigate();
-  const handleBackClick = () => { navigate(-1); };
-   const handleSignup = () => {
-    navigate("/login");
-  }
+  const handleBackClick = () => {
+    navigate(-1);
+  };
+  const handleSignup = (e) => {
+    if (password !== confirmPassword) {
+      alert("Passwords don't match!");
+      return;
+    }
+    e.preventDefault();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        console.log(userCredential);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div className="signup-page">
@@ -67,39 +90,48 @@ function SignUpPage() {
         <img src="/Assets/Line 42 (Stroke).png" alt="style" />
         <p>Enter your details and dive into a realm of ancient wisdom! 💫</p>
       </div>
-      <Form>
-        <Input
+      <form onSubmit={handleSignup}>
+        <input
           label="Your name"
           variant="standard"
           type="text"
           margin="normal"
           InputLabelProps={{ style: inputLabelStyles }}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
-        <Input
+        <input
           label="Your email"
           variant="standard"
           type="email"
           margin="normal"
           InputLabelProps={{ style: inputLabelStyles }}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
-        <Input
+        <input
           label="Password"
           variant="standard"
           type="password"
           margin="normal"
           InputLabelProps={{ style: inputLabelStyles }}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
-        <Input
+        <input
           label="Confirm Password"
           variant="standard"
           type="password"
           margin="normal"
           InputLabelProps={{ style: inputLabelStyles }}
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
         />
-        <div style={{ marginTop: "4rem" }}>
-          <Button title="Create an account" func={handleSignup}/>
-        </div>
-      </Form>
+        {/*  <div style={{ marginTop: "4rem" }}>
+          <Button title="Create an account" func={handleSignup} />
+        </div> */}
+        <button type="submit">signup</button>
+      </form>
     </div>
   );
 }
