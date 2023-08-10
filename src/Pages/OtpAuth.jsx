@@ -97,46 +97,48 @@ function OtpAuth() {
       </div>
       <Toaster toastOptions={{ duration: 4000 }} />
       <div id="recaptcha-container"></div>
-      {showOTP ? (
-        <>
-          <div className="otp-typography">
-            <p>OTP Verification</p>
-            <label htmlFor="otp">
-              Enter the code from the sms we sent to <span>{ph}</span>
-            </label>
-          </div>
-          <div className="Authentication-otp">
-            {
-              <OtpInput
-                value={otp}
-                onChange={setOtp}
-                OTPLength={6}
-                otpType="number"
-                disabled={false}
-                autoFocus
-                className="opt-container "
-              ></OtpInput>
-            }
-            <p>
-              I didn't receive any code. <span>RESEND</span>
-            </p>
+      <div className="contentWrapper">
+        {showOTP ? (
+          <>
+            <div className="otp-typography">
+              <p>OTP Verification</p>
+              <label htmlFor="otp">
+                Enter the code from the sms we sent to <span>{ph}</span>
+              </label>
+            </div>
+            <div className="Authentication-otp">
+              {
+                <OtpInput
+                  value={otp}
+                  onChange={setOtp}
+                  OTPLength={6}
+                  otpType="number"
+                  disabled={false}
+                  autoFocus
+                  className="opt-container "
+                ></OtpInput>
+              }
+              <p>
+                I didn't receive any code. <span>RESEND</span>
+              </p>
 
-            <Button title="Submit" func={onOTPVerify} />
-          </div>
-        </>
-      ) : (
-        <>
-          <div className="otp-typography">
-            <p>Start your Vedic quest</p>
-          </div>
-          <div className="Authentication-options">
-            <label htmlFor="ph">Enter mobile no.*</label>
-            <PhoneInput country={"in"} value={ph} onChange={setPh} />
+              <Button title="Submit" func={onOTPVerify} />
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="otp-typography">
+              <p>Start your Vedic quest</p>
+            </div>
+            <div className="Authentication-options">
+              <label htmlFor="ph">Enter mobile no.*</label>
+              <PhoneInput country={"in"} value={ph} onChange={setPh} />
 
-            <Button title="Send OTP" func={onSignup} />
-          </div>
-        </>
-      )}
+              <Button title="Send OTP" func={onSignup} />
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 }

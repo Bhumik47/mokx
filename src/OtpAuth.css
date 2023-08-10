@@ -1,20 +1,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter&family=Kumbh+Sans&family=Mukta&family=Poppins:wght@300&family=Raleway:wght@500&display=swap");
-
+.contentWrapper {
+  padding: 0.1rem 1.5rem;
+  position: relative;
+  height: inherit;
+  box-sizing: border-box;
+  width: 100%;
+}
 .otp-typography {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
+  width: 100%;
+  margin-left: 10px;
   margin-top: -25px;
 }
-.otp-typography p:nth-child(1) {
+.otp-typography p {
+  text-align: center;
   color: #fff;
   font-family: Kumbh Sans;
   font-size: 24px;
   font-style: normal;
   font-weight: 700;
-  line-height: normal;
+  line-height: 10px;
 }
 .otp-typography label {
   width: 279.81px;
@@ -39,6 +43,7 @@
 .Authentication-otp {
   display: flex;
   flex-direction: column;
+  margin-top: 2rem;
   align-items: center;
   justify-content: center;
 }
@@ -75,6 +80,7 @@
 .react-tel-input .form-control {
   width: 100% !important;
   padding-top: 6px;
+  height: 3rem;
   font-size: 16px !important;
 }
 .Authentication-options label {
@@ -84,5 +90,5 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  width: 152px;
+  max-width: 152px;
 }
