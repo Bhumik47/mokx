@@ -273,7 +273,6 @@
 .profile-wrapper {
   display: flex;
   justify-content: center;
-  gap: 10px;
   position: relative;
 }
 .chat-name {
@@ -281,7 +280,7 @@
   flex-direction: column;
   gap: 5px;
   margin-top: 4px;
-  position: static;
+  padding-left: 10px;
 }
 .chat-name > p:nth-child(1) {
   color: #69235b;
