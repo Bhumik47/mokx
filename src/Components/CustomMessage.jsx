@@ -87,11 +87,11 @@ function CustomMessage({ model }) {
         </div>
         {/* Display timestamp for outgoing messages */}
         {isOutgoing && (
-          <div style={timestampStyle}>{formatTimestamp(new Date())}</div>
+          <div style={timestampStyle}>{formatTimestamp(model.timestamp)}</div>
         )}
         {/* Display timestamp for incoming messages */}
         {!isOutgoing && (
-          <div style={timestampStyle}>{formatTimestamp(new Date())}</div>
+          <div style={timestampStyle}>{formatTimestamp(model.timestamp)}</div>
         )}
       </div>
     </div>

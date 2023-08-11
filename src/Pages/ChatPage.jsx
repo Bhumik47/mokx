@@ -33,12 +33,14 @@ function ChatPage() {
       sender: "Arya",
       profilePhoto: "/Assets/Rectangle 1092.png",
       direction: "incoming",
+      timestamp: new Date(),
     },
     {
       message: `Let your curiosity guide you, wishing you blessings and enlightenment 🕉️`,
       sender: "Arya",
       profilePhoto: "/Assets/Rectangle 1092.png",
       direction: "incoming",
+      timestamp: new Date(),
     },
   ]);
 
@@ -70,6 +72,7 @@ function ChatPage() {
       sender: "Arya",
       profilePhoto: "/Assets/Rectangle 1092.png",
       direction: "incoming",
+      timestamp: new Date(),
     };
   };
 
@@ -82,6 +85,7 @@ function ChatPage() {
       message: message,
       sender: "user",
       direction: "outgoing",
+      timestamp: new Date(),
     };
     const newMessages = [...messages, newMessage]; // all old messages + new message
 
