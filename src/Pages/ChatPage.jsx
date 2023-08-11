@@ -127,11 +127,7 @@ function ChatPage() {
               <CurvedBackIcon color="#69235B" />
             </IconButton>
             <div className="profile-wrapper">
-              <img
-                src="/Assets/Rectangle 1092.png"
-                alt="profile"
-                style={{ position: "relative" }}
-              />
+              <img src="/Assets/Rectangle 1092.png" alt="profile" />
               <Online />
               <div className="chat-name">
                 <p>Arya</p>

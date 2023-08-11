@@ -274,6 +274,7 @@
   display: flex;
   justify-content: center;
   gap: 10px;
+  position: relative;
 }
 .chat-name {
   display: flex;
