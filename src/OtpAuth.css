@@ -44,8 +44,9 @@
   margin-top: 2rem;
   align-items: center;
   justify-content: center;
+  padding-bottom: 5rem;
 }
-.Authentication-otp p {
+.button p {
   color: #fff;
   text-align: center;
   font-family: Poppins;
@@ -98,6 +99,9 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+}
+.timer {
+  padding-bottom: 1rem;
 }
 .timer p {
   color: #fbbc04;

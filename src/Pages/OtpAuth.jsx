@@ -134,32 +134,34 @@ function OtpAuth() {
       <Toaster toastOptions={{ duration: 4000 }} />
       <div id="recaptcha-container"></div>
       <div className="contentWrapper">
-        {showOTP ? (
+        {!showOTP ? (
           <>
             {" "}
             <div className="container">
               <div className="otp-typography">
                 <p>OTP Verification</p>
               </div>
-              <div className="Authentication-otp">
-                <label htmlFor="otp">
-                  Enter the code from the sms we sent to <span>{ph}</span>
-                </label>
-                <OtpInput
-                  value={otp}
-                  onChange={setOtp}
-                  OTPLength={6}
-                  otpType="number"
-                  disabled={false}
-                  autoFocus
-                  className="opt-container "
-                ></OtpInput>
-                <div className="timer">
-                  <p>
-                    {timer > 0
-                      ? `0${Math.floor(timer / 60)}:${timer % 60}`
-                      : "00:00"}
-                  </p>
+              <div>
+                <div className="Authentication-otp">
+                  <label htmlFor="otp">
+                    Enter the code from the sms we sent to <span>{ph}</span>
+                  </label>
+                  <OtpInput
+                    value={otp}
+                    onChange={setOtp}
+                    OTPLength={6}
+                    otpType="number"
+                    disabled={false}
+                    autoFocus
+                    className="opt-container "
+                  ></OtpInput>
+                  <div className="timer">
+                    <p>
+                      {timer > 0
+                        ? `0${Math.floor(timer / 60)}:${timer % 60}`
+                        : "00:00"}
+                    </p>
+                  </div>
                 </div>
 
                 <div className="button">
