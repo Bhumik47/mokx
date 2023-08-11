@@ -5,10 +5,14 @@ import './App.css';
 import SignUpPage from './Pages/SignUpPage'; */
 import ChatPage from './Pages/ChatPage';
 import AppLoader from './Pages/AppLoader';
+import { UserProvider } from './Auth';
+
 
 function App() {
   return (
+
     <Router>
+       <UserProvider>
       <div className="App">
         <Routes>
           <Route exact path="/" element={<AppLoader />} />
@@ -16,8 +20,10 @@ function App() {
           <Route path="/signup" element={<SignUpPage />} /> */}
           <Route path="/chat" element={<ChatPage />} />
         </Routes>
-      </div>
-    </Router>
+        </div>
+        </UserProvider>
+      </Router>
+     
   );
 }
 

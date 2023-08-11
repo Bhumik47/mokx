@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../Auth";
 
 import {
   MainContainer,
@@ -16,6 +17,7 @@ import IconButton from "@mui/material/IconButton";
 import CurvedBackIcon from "../Components/CurvedBackIcon";
 import CustomMessage from "../Components/CustomMessage";
 import Online from "../Components/Online";
+import { useEffect } from "react";
 
 function ChatPage() {
   const [isLanguageButtonActive, setIsLanguageButtonActive] = useState(false);
@@ -30,6 +32,13 @@ function ChatPage() {
     },
   ]);
 
+  /* const { user } = useUser();
+  useEffect(() => {
+    if (!user) {
+      navigate("/");
+    }
+  }, []);
+ */
   // Simulate a response from Arya
   const simulateAryaReply = async (userMessage) => {
     console.log("user message", userMessage);
@@ -53,24 +62,6 @@ function ChatPage() {
       direction: "incoming",
     };
   };
-
-  /* const simulateAryaReply = async (userMessage) => {
-    console.log("user message", userMessage);
-
-    // Call the chatbot API using POST request
-    await axios
-      .post(
-        "https://20.235.118.112:5000/generate",
-        { text: userMessage } // Send user message as data in the POST request
-      )
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching response from API:", error);
-        setTyping(false);
-      });
-  }; */
 
   const handleSend = async (message) => {
     const newMessage = {
@@ -109,7 +100,8 @@ function ChatPage() {
     <div className="chat-page">
       <div
         style={{
-          height: "100vh",
+          position: "relative",
+          height: "85vh",
           width: "100%",
           maxWidthwidth: 375,
           background: "#F8F8FF",

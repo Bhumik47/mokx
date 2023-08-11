@@ -8,6 +8,7 @@ import OtpInput from "otp-input-react";
 import "react-phone-input-2/lib/style.css";
 import "../OtpAuth.css";
 import { auth } from "../firebase.config";
+import { CgSpinner } from "react-icons/cg";
 
 function OtpAuth() {
   const [otp, setOtp] = useState("");
@@ -16,6 +17,20 @@ function OtpAuth() {
   const [showOTP, setShowOTP] = useState(false);
   const [user, setUser] = useState(null);
   const [timer, setTimer] = useState(0);
+  const [rotation, setRotation] = useState(0);
+
+  function startRotation() {
+    const rotationInterval = setInterval(() => {
+      setRotation((prevRotation) => (prevRotation + 10) % 360); // Adjust the increment as needed
+    }, 2000); // Adjust the interval as needed
+
+    return rotationInterval;
+  }
+
+  function stopRotation(intervalId) {
+    clearInterval(intervalId);
+    setRotation(0);
+  }
 
   function startTimer(duration) {
     setTimer(duration);
@@ -119,7 +134,7 @@ function OtpAuth() {
       <Toaster toastOptions={{ duration: 4000 }} />
       <div id="recaptcha-container"></div>
       <div className="contentWrapper">
-        {showOTP ? (
+        {!showOTP ? (
           <>
             <div className="otp-typography">
               <p>OTP Verification</p>
@@ -171,7 +186,30 @@ function OtpAuth() {
               <label htmlFor="ph">Enter mobile no.*</label>
               <PhoneInput country={"in"} value={ph} onChange={setPh} />
 
-              <Button title="Send OTP" func={onSignup} />
+              <div className="button">
+                <button
+                  type="submit"
+                  onClick={async () => {
+                    setLoading(true);
+                    const rotationInterval = startRotation();
+                    await onSignup();
+                    setLoading(false);
+                    stopRotation(rotationInterval);
+                  }}
+                  disabled={loading}
+                >
+                  {loading && (
+                    <CgSpinner
+                      size={20}
+                      style={{
+                        transform: `rotate(${rotation}deg)`,
+                        animation: "infinite",
+                      }}
+                    />
+                  )}
+                  <span>Send OTP</span>
+                </button>
+              </div>
             </div>
           </>
         )}
