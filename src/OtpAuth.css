@@ -69,7 +69,7 @@
 .opt-container {
   display: flex;
   justify-content: center;
-  gap: 2;
+  gap: 5;
 }
 .opt-container input {
   margin-right: 0 !important;
