@@ -41,7 +41,7 @@
 
 /* Home */
 .home {
-  max-width: 400px;
+  max-width: 375px;
   width: 100%;
   height: 100vh;
   position: relative;
@@ -50,6 +50,10 @@
   flex-direction: column;
   align-items: center;
   overflow: hidden;
+}
+.image-container img {
+  max-width: 400;
+  height: auto; /* Maintain aspect ratio */
 }
 
 .arya {
@@ -124,6 +128,7 @@
   flex-direction: column;
   align-items: start;
   justify-content: center;
+  padding-bottom: 6rem;
 }
 
 .Authentication-options > p {
@@ -378,7 +383,11 @@
   bottom: 1rem;
   cursor: pointer;
 }
+
 .button > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   width: 340px;
   height: 54px;
@@ -386,6 +395,10 @@
   border-radius: 10px;
   background: #ffc746;
   border: none;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, transform 0.3s;
+  position: relative;
+  overflow: hidden;
 
   /* text */
   color: #69235b;
@@ -395,6 +408,33 @@
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+}
+.button > button:hover {
+  background: rgb(247, 243, 243);
+}
+.button > button:active {
+  transform: scale(0.95);
+}
+
+.button > button:active::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.4);
+  top: 0;
+  left: 0;
+  transform: scale(0);
+  border-radius: 50%;
+  animation: ripple 0.6s linear;
+  pointer-events: none;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
 }
 /* custom message */
 .message {

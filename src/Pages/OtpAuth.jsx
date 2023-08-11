@@ -134,47 +134,73 @@ function OtpAuth() {
       <Toaster toastOptions={{ duration: 4000 }} />
       <div id="recaptcha-container"></div>
       <div className="contentWrapper">
-        {showOTP ? (
+        {!showOTP ? (
           <>
-            <div className="otp-typography">
-              <p>OTP Verification</p>
-              <label htmlFor="otp">
-                Enter the code from the sms we sent to <span>{ph}</span>
-              </label>
-            </div>
-            <div className="Authentication-otp">
-              <div className="timer">
-                <p>
-                  {timer > 0
-                    ? `0${Math.floor(timer / 60)}:${timer % 60}`
-                    : "00:00"}
-                </p>
+            {" "}
+            <div className="container">
+              <div className="otp-typography">
+                <p>OTP Verification</p>
+                <label htmlFor="otp">
+                  Enter the code from the sms we sent to <span>{ph}</span>
+                </label>
               </div>
-              <OtpInput
-                value={otp}
-                onChange={setOtp}
-                OTPLength={6}
-                otpType="number"
-                disabled={false}
-                autoFocus
-                className="opt-container "
-              ></OtpInput>
+              <div className="Authentication-otp">
+                <div className="timer">
+                  <p>
+                    {timer > 0
+                      ? `0${Math.floor(timer / 60)}:${timer % 60}`
+                      : "00:00"}
+                  </p>
+                </div>
+                <OtpInput
+                  value={otp}
+                  onChange={setOtp}
+                  OTPLength={6}
+                  otpType="number"
+                  disabled={false}
+                  autoFocus
+                  className="opt-container "
+                ></OtpInput>
 
-              <p>
-                I didn't receive any code.{" "}
-                <span
-                  onClick={() => {
-                    if (timer <= 0) {
-                      onSignup();
-                    }
-                  }}
-                  className={timer > 0 ? "disabled-link" : "enable-link"}
-                >
-                  RESEND
-                </span>
-              </p>
+                <p>
+                  I didn't receive any code.{" "}
+                  <span
+                    onClick={() => {
+                      if (timer <= 0) {
+                        onSignup();
+                      }
+                    }}
+                    className={timer > 0 ? "disabled-link" : "enable-link"}
+                  >
+                    RESEND
+                  </span>
+                </p>
 
-              <Button title="Submit" func={onOTPVerify} />
+                <div className="button">
+                  <button
+                    type="submit"
+                    onClick={async () => {
+                      setLoading(true);
+                      const rotationInterval = startRotation();
+                      await onOTPVerify();
+                      setLoading(false);
+                      stopRotation(rotationInterval);
+                    }}
+                    disabled={loading}
+                  >
+                    {loading && (
+                      <CgSpinner
+                        size={20}
+                        style={{
+                          marginRight: "8px", // Adjust as needed
+                          animation: "spin 1s linear infinite", // Apply spinning animation
+                        }}
+                      />
+                    )}
+                    <span>Submit</span>
+                  </button>
+                </div>
+              </div>
             </div>
           </>
         ) : (
@@ -185,31 +211,31 @@ function OtpAuth() {
             <div className="Authentication-options">
               <label htmlFor="ph">Enter mobile no.*</label>
               <PhoneInput country={"in"} value={ph} onChange={setPh} />
+            </div>
 
-              <div className="button">
-                <button
-                  type="submit"
-                  onClick={async () => {
-                    setLoading(true);
-                    const rotationInterval = startRotation();
-                    await onSignup();
-                    setLoading(false);
-                    stopRotation(rotationInterval);
-                  }}
-                  disabled={loading}
-                >
-                  {loading && (
-                    <CgSpinner
-                      size={20}
-                      style={{
-                        transform: `rotate(${rotation}deg)`,
-                        animation: "infinite",
-                      }}
-                    />
-                  )}
-                  <span>Send OTP</span>
-                </button>
-              </div>
+            <div className="button">
+              <button
+                type="submit"
+                onClick={async () => {
+                  setLoading(true);
+                  const rotationInterval = startRotation();
+                  await onSignup();
+                  setLoading(false);
+                  stopRotation(rotationInterval);
+                }}
+                disabled={loading}
+              >
+                {loading && (
+                  <CgSpinner
+                    size={20}
+                    style={{
+                      marginRight: "8px", // Adjust as needed
+                      animation: "spin 3s linear infinite", // Apply spinning animation
+                    }}
+                  />
+                )}
+                <span>Send OTP</span>
+              </button>
             </div>
           </>
         )}

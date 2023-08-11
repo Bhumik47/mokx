@@ -21,8 +21,6 @@
   line-height: 10px;
 }
 .otp-typography label {
-  width: 279.81px;
-  height: 47.9px;
   flex-shrink: 0;
   color: #fff;
   text-align: center;
@@ -109,4 +107,13 @@
   line-height: 19px;
   letter-spacing: 0em;
   text-align: center;
+}
+/* Add this to your existing CSS or create a new CSS file */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
