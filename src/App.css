@@ -281,6 +281,7 @@
   flex-direction: column;
   gap: 5px;
   margin-top: 4px;
+  position: static;
 }
 .chat-name > p:nth-child(1) {
   color: #69235b;
