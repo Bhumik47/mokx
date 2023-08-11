@@ -3,6 +3,7 @@ import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../Auth";
+import "../Query-suggestion.css";
 
 import {
   MainContainer,
@@ -22,14 +23,17 @@ import { useEffect } from "react";
 function ChatPage() {
   const [isLanguageButtonActive, setIsLanguageButtonActive] = useState(false);
   const [typing, setTyping] = useState(false);
+  const [showSuggestions, setShowSuggestions] = useState(true); // State to track suggestion visibility
+  const [userSentFirstMessage, setUserSentFirstMessage] = useState(false); // State to track first message
   const [messages, setMessages] = useState([
-    {
+    /* {
       message: `🙏 Namaste! I’m Arya, your AI Vedic help. I'm here to provide insights from Vedas for daily life concerns. 
-        Whether you seek guidance on mantras, general life advice, or specific Vedic interpretations, I’m here to assist you.`,
+        
+      Whether you seek guidance on mantras, general life advice, or specific Vedic interpretations, I’m here to assist you.`,
       sender: "Arya",
       profilePhoto: "/Assets/Rectangle 1092.png",
       direction: "incoming",
-    },
+    }, */
   ]);
 
   /* const { user } = useUser();
@@ -64,6 +68,10 @@ function ChatPage() {
   };
 
   const handleSend = async (message) => {
+    if (!userSentFirstMessage) {
+      setShowSuggestions(false); // Hide the suggestions after the user sends the first message
+      setUserSentFirstMessage(true);
+    }
     const newMessage = {
       message: message,
       sender: "user",
@@ -94,6 +102,10 @@ function ChatPage() {
 
   const handleLanguageButtonClick = () => {
     setIsLanguageButtonActive((prevState) => !prevState);
+  };
+
+  const handleSuggestionClick = (suggestionText) => {
+    handleSend(suggestionText); // Send the suggestion as a message
   };
 
   return (
@@ -173,6 +185,77 @@ function ChatPage() {
                 typing ? <TypingIndicator content="Arya is typing" /> : null
               }
             >
+              {showSuggestions && (
+                <div className="query-suggetion">
+                  <div className="heading">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="19"
+                      height="21"
+                      viewBox="0 0 19 21"
+                      fill="none"
+                    >
+                      <path
+                        d="M4.22222 21L8.44444 13.125L0 12.075L12.6667 0H14.7778L10.5556 7.875L19 8.925L6.33333 21H4.22222Z"
+                        fill="#69235B"
+                      />
+                    </svg>
+                    <p>You can ask queries like:</p>
+                  </div>
+                  <div
+                    className="suggetion"
+                    onClick={() =>
+                      handleSuggestionClick(
+                        "What is the mantra in Rigveda 10.2.3?"
+                      )
+                    }
+                  >
+                    What is the mantra in Rigveda 10.2.3?
+                  </div>
+                  <div
+                    className="suggetion"
+                    onClick={() =>
+                      handleSuggestionClick(
+                        " What are the prescribed Vedic remedies for snake bites?"
+                      )
+                    }
+                  >
+                    What are the prescribed Vedic remedies for snake bites?
+                  </div>
+                  <div
+                    className="suggetion"
+                    onClick={() =>
+                      handleSuggestionClick(
+                        "  Can you tell me the significance of the Gayatri Mantra?"
+                      )
+                    }
+                  >
+                    Can you tell me the significance of the Gayatri Mantra?
+                  </div>
+
+                  <div className="Limitation">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="17"
+                      height="14"
+                      viewBox="0 0 17 14"
+                      fill="none"
+                    >
+                      <path
+                        d="M8.5 1L1 13H16L8.5 1Z"
+                        stroke="#69235B"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M8.5 10.4737V10.7895M8.5 5.42104L8.50316 8.57894"
+                        stroke="#69235B"
+                        stroke-linecap="round"
+                      />
+                    </svg>
+                    <p>Limitation: May struggle with complex queries.</p>
+                  </div>
+                </div>
+              )}
               {messages.map((message, i) => {
                 return <CustomMessage key={i} model={message} />;
               })}
