@@ -20,7 +20,7 @@
   font-weight: 700;
   line-height: 10px;
 }
-.otp-typography label {
+.container label {
   flex-shrink: 0;
   color: #fff;
   text-align: center;
@@ -30,7 +30,7 @@
   font-weight: 400;
   line-height: 24px; /* 150% */
 }
-.otp-typography label span {
+.Authentication-otp label span {
   color: #ffc746;
   font-family: Poppins;
   font-size: 16px;

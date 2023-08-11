@@ -134,24 +134,17 @@ function OtpAuth() {
       <Toaster toastOptions={{ duration: 4000 }} />
       <div id="recaptcha-container"></div>
       <div className="contentWrapper">
-        {!showOTP ? (
+        {showOTP ? (
           <>
             {" "}
             <div className="container">
               <div className="otp-typography">
                 <p>OTP Verification</p>
+              </div>
+              <div className="Authentication-otp">
                 <label htmlFor="otp">
                   Enter the code from the sms we sent to <span>{ph}</span>
                 </label>
-              </div>
-              <div className="Authentication-otp">
-                <div className="timer">
-                  <p>
-                    {timer > 0
-                      ? `0${Math.floor(timer / 60)}:${timer % 60}`
-                      : "00:00"}
-                  </p>
-                </div>
                 <OtpInput
                   value={otp}
                   onChange={setOtp}
@@ -161,22 +154,28 @@ function OtpAuth() {
                   autoFocus
                   className="opt-container "
                 ></OtpInput>
-
-                <p>
-                  I didn't receive any code.{" "}
-                  <span
-                    onClick={() => {
-                      if (timer <= 0) {
-                        onSignup();
-                      }
-                    }}
-                    className={timer > 0 ? "disabled-link" : "enable-link"}
-                  >
-                    RESEND
-                  </span>
-                </p>
+                <div className="timer">
+                  <p>
+                    {timer > 0
+                      ? `0${Math.floor(timer / 60)}:${timer % 60}`
+                      : "00:00"}
+                  </p>
+                </div>
 
                 <div className="button">
+                  <p>
+                    I didn't receive any code.{" "}
+                    <span
+                      onClick={() => {
+                        if (timer <= 0) {
+                          onSignup();
+                        }
+                      }}
+                      className={timer > 0 ? "disabled-link" : "enable-link"}
+                    >
+                      RESEND
+                    </span>
+                  </p>
                   <button
                     type="submit"
                     onClick={async () => {
