@@ -101,7 +101,7 @@ function ChatPage() {
       <div
         style={{
           position: "relative",
-          height: "85vh",
+          height: "88vh",
           width: "100%",
           maxWidthwidth: 375,
           background: "#F8F8FF",
@@ -127,7 +127,11 @@ function ChatPage() {
               <CurvedBackIcon color="#69235B" />
             </IconButton>
             <div className="profile-wrapper">
-              <img src="/Assets/Rectangle 1092.png" alt="profile" />
+              <img
+                src="/Assets/Rectangle 1092.png"
+                alt="profile"
+                style={{ position: "relative" }}
+              />
               <Online />
               <div className="chat-name">
                 <p>Arya</p>
