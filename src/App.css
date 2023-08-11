@@ -9,13 +9,14 @@
 .loading {
   position: relative;
   display: flex;
-  max-width: 375px;
+  max-width: 400px;
   width: 100%;
   height: 100vh;
   background: #fff;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .loading > div > img {
