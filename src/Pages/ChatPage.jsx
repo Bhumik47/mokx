@@ -26,14 +26,20 @@ function ChatPage() {
   const [showSuggestions, setShowSuggestions] = useState(true); // State to track suggestion visibility
   const [userSentFirstMessage, setUserSentFirstMessage] = useState(false); // State to track first message
   const [messages, setMessages] = useState([
-    /* {
+    {
       message: `🙏 Namaste! I’m Arya, your AI Vedic help. I'm here to provide insights from Vedas for daily life concerns. 
         
       Whether you seek guidance on mantras, general life advice, or specific Vedic interpretations, I’m here to assist you.`,
       sender: "Arya",
       profilePhoto: "/Assets/Rectangle 1092.png",
       direction: "incoming",
-    }, */
+    },
+    {
+      message: `Let your curiosity guide you, wishing you blessings and enlightenment 🕉️`,
+      sender: "Arya",
+      profilePhoto: "/Assets/Rectangle 1092.png",
+      direction: "incoming",
+    },
   ]);
 
   /* const { user } = useUser();
@@ -115,7 +121,7 @@ function ChatPage() {
           position: "relative",
           height: "88vh",
           width: "100%",
-          maxWidthwidth: 375,
+          maxWidthwidth: 400,
           background: "#F8F8FF",
         }}
       >
@@ -185,6 +191,9 @@ function ChatPage() {
                 typing ? <TypingIndicator content="Arya is typing" /> : null
               }
             >
+              {messages.slice(0, 1).map((message, i) => {
+                return <CustomMessage key={i} model={message} />;
+              })}
               {showSuggestions && (
                 <div className="query-suggetion">
                   <div className="heading">
@@ -256,7 +265,7 @@ function ChatPage() {
                   </div>
                 </div>
               )}
-              {messages.map((message, i) => {
+              {messages.slice(1).map((message, i) => {
                 return <CustomMessage key={i} model={message} />;
               })}
             </MessageList>

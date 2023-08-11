@@ -40,7 +40,7 @@
 
 /* Home */
 .home {
-  max-width: 375px;
+  max-width: 400px;
   width: 100%;
   height: 100vh;
   position: relative;
@@ -48,6 +48,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: hidden;
 }
 
 .arya {
@@ -429,7 +430,6 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  margin-right: 10px;
 }
 .message-input {
   display: flex;

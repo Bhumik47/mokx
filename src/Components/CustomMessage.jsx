@@ -32,7 +32,7 @@ function CustomMessage({ model }) {
     display: "flex",
     alignItems: "flex-start", // Align items to the top of the container
     justifyContent: isOutgoing ? "flex-end" : "flex-start", // Align outgoing messages to the right, incoming messages to the left
-    margin: "0 0 10px",
+    margin: "0 0 5px",
   };
 
   const profilePhotoStyle = {
@@ -78,7 +78,7 @@ function CustomMessage({ model }) {
         />
       )}
       <div
-        style={{ position: "relative", maxWidth: "100%", margin: "0 0 30px" }}
+        style={{ position: "relative", maxWidth: "100%", margin: "0 0 15px" }}
       >
         <div className="message-content" style={messageStyle}>
           <div className="message-text" style={textStyle}>
