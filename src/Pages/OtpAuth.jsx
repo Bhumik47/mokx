@@ -34,10 +34,21 @@ function OtpAuth() {
 
   function startTimer(duration) {
     setTimer(duration);
-    const intervalId = setInterval(() => {
-      setTimer((prevTime) => prevTime - 1);
-    }, 1000);
-    return intervalId;
+    const startTime = Date.now();
+
+    const updateTimer = () => {
+      const elapsedTime = Math.floor((Date.now() - startTime) / 1000);
+      const remainingTime = duration - elapsedTime;
+
+      if (remainingTime > 0) {
+        setTimer(remainingTime);
+        setTimeout(updateTimer, 1000);
+      } else {
+        setTimer(0);
+      }
+    };
+
+    updateTimer();
   }
 
   function stopTimer(intervalId) {
@@ -80,9 +91,7 @@ function OtpAuth() {
         // Start the timer when OTP is sent
         const intervalId = startTimer(180); // 3 minutes in seconds
         // Enable resend button after the timer ends
-        setTimeout(() => {
-          stopTimer(intervalId);
-        }, 180000); // 3 minutes in milliseconds
+        startTimer(180); // 3 minutes in milliseconds
       })
       .catch((error) => {
         console.log(error);
@@ -144,7 +153,8 @@ function OtpAuth() {
               <div>
                 <div className="Authentication-otp">
                   <label htmlFor="otp">
-                    Enter the code from the sms we sent to <span>{ph}</span>
+                    Enter the code from the sms we sent to{" "}
+                    <span>{`+${ph}`}</span>
                   </label>
                   <OtpInput
                     value={otp}
@@ -158,7 +168,9 @@ function OtpAuth() {
                   <div className="timer">
                     <p>
                       {timer > 0
-                        ? `0${Math.floor(timer / 60)}:${timer % 60}`
+                        ? `0${Math.floor(timer / 60)}:${
+                            timer % 60 < 10 ? "0" : ""
+                          }${timer % 60}`
                         : "00:00"}
                     </p>
                   </div>
