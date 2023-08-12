@@ -143,7 +143,7 @@ function OtpAuth() {
       <Toaster toastOptions={{ duration: 4000 }} />
       <div id="recaptcha-container"></div>
       <div className="contentWrapper">
-        {showOTP ? (
+        {!showOTP ? (
           <>
             {" "}
             <div className="container">
