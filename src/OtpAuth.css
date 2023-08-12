@@ -78,9 +78,27 @@
 }
 .react-tel-input .form-control {
   width: 100% !important;
-  padding-top: 6px;
   height: 3rem;
   font-size: 16px !important;
+  border-radius: 7px;
+}
+.react-tel-input {
+  display: flex !important;
+}
+.react-tel-input .flag-dropdown {
+  position: absolute !important;
+  border-radius: 7px !important;
+  padding: 1px !important;
+  border: none;
+  background: #fff;
+  height: 2.5rem !important;
+  top: 4px !important;
+  left: 3px;
+}
+.react-tel-input .form-control:focus {
+  border: 4px solid #fbbc04;
+  outline: none;
+  box-shadow: none;
 }
 .Authentication-options label {
   color: #fff;
@@ -112,6 +130,7 @@
   letter-spacing: 0em;
   text-align: center;
 }
+
 /* Add this to your existing CSS or create a new CSS file */
 @keyframes spin {
   0% {
