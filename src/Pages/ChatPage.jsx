@@ -57,7 +57,7 @@ function ChatPage() {
     const formData = new FormData();
     formData.append("text", userMessage);
     console.log(formData);
-    const response = await fetch("http://20.235.118.112:5000/generate", {
+    const response = await fetch("https://20.235.118.112:5000/generate", {
       method: "POST",
       body: formData,
     })
