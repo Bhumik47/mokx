@@ -19,6 +19,7 @@ import CurvedBackIcon from "../Components/CurvedBackIcon";
 import CustomMessage from "../Components/CustomMessage";
 import Online from "../Components/Online";
 import { useEffect } from "react";
+import { apicall } from "../apicall";
 
 function ChatPage() {
   const [isLanguageButtonActive, setIsLanguageButtonActive] = useState(false);
@@ -52,7 +53,7 @@ function ChatPage() {
   }, []);
  */
   // Simulate a response from Arya
-  const simulateAryaReply = async (userMessage) => {
+  /* const simulateAryaReply = async (userMessage) => {
     console.log("user message", userMessage);
     const formData = new FormData();
     formData.append("text", userMessage);
@@ -74,6 +75,43 @@ function ChatPage() {
       direction: "incoming",
       timestamp: new Date(),
     };
+  }; */
+  const simulateAryaReply = async (userMessage) => {
+    console.log("user message", userMessage);
+    /*  const formData = new FormData();
+    formData.append("text", userMessage);
+    console.log(formData);
+
+    try {
+      const response = await fetch(
+        "https://mokxweb.duckdns.org:5000/generate",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      const json = await response.json();
+      console.log("response", json);
+ */
+    const result = await apicall.result({ text: userMessage });
+    if (result) {
+      return {
+        message: result.data.response,
+        sender: "Arya",
+        profilePhoto: "/Assets/Rectangle 1092.png",
+        direction: "incoming",
+        timestamp: new Date(),
+      };
+    } else {
+      return {
+        message: "Oops! An error occurred while fetching the response.",
+        sender: "Arya",
+        profilePhoto: "/Assets/Rectangle 1092.png",
+        direction: "incoming",
+        timestamp: new Date(),
+      };
+    }
   };
 
   const handleSend = async (message) => {
