@@ -59,7 +59,6 @@ function ChatPage() {
     console.log(formData);
     const response = await fetch("https://mokxweb.duckdns.org:5000/generate", {
       method: "POST",
-      mode: "cors",
       body: formData,
     })
       .then((response) => response.json())
