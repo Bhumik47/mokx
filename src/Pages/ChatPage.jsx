@@ -59,6 +59,9 @@ function ChatPage() {
     console.log(formData);
     const response = await fetch("https://mokxweb.duckdns.org:5000/generate", {
       method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+      },
       body: formData,
     })
       .then((response) => response.json())
