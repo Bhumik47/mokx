@@ -68,7 +68,7 @@ function ChatPage() {
       });
     console.log("response", response);
     return {
-      message: response.response, // Use the actual response from Arya
+      message: response.response,
       sender: "Arya",
       profilePhoto: "/Assets/Rectangle 1092.png",
       direction: "incoming",
